@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "5rS93KSKy9CFNUraTljA5Ww+Vnzbgx0zAWTo4vioSA0jdci+Eq8vdwO62qgP7mviFWeO6Y6kKhOuIdg20DaYFQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\danco\\.nuget\\packages\\google.protobuf\\3.17.0\\google.protobuf.3.17.0.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\grpc.core.api\\2.37.0\\grpc.core.api.2.37.0.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\grpc.net.client\\2.37.0\\grpc.net.client.2.37.0.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\grpc.net.common\\2.37.0\\grpc.net.common.2.37.0.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\grpc.tools\\2.37.1\\grpc.tools.2.37.1.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.1\\system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\danco\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
+  ],
+  "logs": []
+}

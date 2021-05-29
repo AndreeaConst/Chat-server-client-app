@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj": {}
+    "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj": {}
   },
   "projects": {
-    "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj": {
+    "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
+        "projectUniqueName": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
         "projectName": "ChatClient",
-        "projectPath": "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
-        "packagesPath": "C:\\Users\\danco\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\danco\\OneDrive\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClient\\obj\\",
+        "projectPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
+        "packagesPath": "C:\\Users\\Cătălina\\.nuget\\packages\\",
+        "outputPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\danco\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Cătălina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -48,6 +44,14 @@
               "target": "Package",
               "version": "[3.17.0, )"
             },
+            "Google.Protobuf.Tools": {
+              "target": "Package",
+              "version": "[3.17.2, )"
+            },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.38.0, )"
+            },
             "Grpc.Net.Client": {
               "target": "Package",
               "version": "[2.37.0, )"
@@ -57,6 +61,18 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.37.1, )"
+            },
+            "Microsoft.Bcl.AsyncInterfaces": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Interactive.Async": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "System.Linq.Async": {
+              "target": "Package",
+              "version": "[5.0.0, )"
             }
           },
           "imports": [
@@ -74,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,19 +1,17 @@
 ﻿syntax = "proto3";
 
-option csharp_namespace = "GrpcChatClient";
+option csharp_namespace = "ChatClient";
 
-// The greeting service definition.
-service Greeter {
-  // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply);
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+service Chat {
+  rpc Write(ChatLog) returns (google.protobuf.Empty) {}
+  rpc Subscribe(google.protobuf.Empty) returns (stream ChatLog) {}
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
-}
-
-// The response message containing the greetings.
-message HelloReply {
-  string message = 1;
+message ChatLog {
+	string name = 1;
+	string content = 2;
+	google.protobuf.Timestamp time = 3;
 }

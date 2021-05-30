@@ -23,6 +23,8 @@ namespace ChatServer.Server.Services
             [Import]
             private ChatServiceModel m_chatService = null;
             private readonly Empty m_empty = new Empty();
+            [Import]
+            private UsersServiceModel m_usersService=null;
 
             private const int Port = 50052;
             private readonly Grpc.Core.Server m_server;
@@ -83,12 +85,14 @@ namespace ChatServer.Server.Services
                 m_logger.Info("Started.");
             }
 
-            public override async Task Subscribe(Empty request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context)
+            public override async Task Subscribe(Username request, IServerStreamWriter<ChatLog> responseStream, ServerCallContext context) //
             {
-                var peer = context.Peer; // keep peer information because it is not available after disconnection
-                m_logger.Info($"{peer} subscribes.");
+                var peer = context.Peer; 
+                m_logger.Info($"{request} subscribes."); //modif
+                m_usersService.Add(request);
 
-                context.CancellationToken.Register(() => m_logger.Info($"{peer} cancels subscription."));
+                context.CancellationToken.Register(() => m_logger.Info($"{request} cancels subscription.")); //modif
+                context.CancellationToken.Register(() => m_usersService.Delete(request));
 
                 // Completing the method means disconnecting the stream by server side.
                 // If subscribing IObservable, you have to block this method after the subscription.
@@ -107,6 +111,24 @@ namespace ChatServer.Server.Services
                 catch (TaskCanceledException)
                 {
                     m_logger.Info($"{peer} unsubscribed.");
+                }
+            }
+
+
+            public override async Task GetUsers(Empty request, IServerStreamWriter<Username> responseStream, ServerCallContext context) //
+            {
+               
+                if(m_usersService!=null)
+                try
+                {
+                    await m_usersService.GetUsersAsObservable()
+                        .ToAsyncEnumerable()
+                        .ForEachAwaitAsync(async (x) => await responseStream.WriteAsync(x))
+                        .ConfigureAwait(false);
+                }
+                catch (TaskCanceledException)
+                {
+                   
                 }
             }
 

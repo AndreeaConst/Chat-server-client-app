@@ -32,7 +32,10 @@ namespace ChatClient
             var consoleLock = new object();
 
             // subscribe (asynchronous)
-            _ = chatServiceClient.ChatLogs()
+            _ = chatServiceClient.ChatLogs(new Username
+            {
+                Name = name,
+            })
                 .ForEachAsync((x) =>
                 {
                     // if the user is writing something, wait until it finishes.

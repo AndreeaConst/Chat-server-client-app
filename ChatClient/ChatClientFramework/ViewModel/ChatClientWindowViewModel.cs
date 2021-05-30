@@ -7,17 +7,36 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Data;
 using ChatClientConsole;
+using System.Windows.Input;
+using System.Timers;
+using System.Windows;
 
 namespace ChatClientFramework
 {
     public class ChatClientWindowViewModel : BindableBase
     {
         Boolean changedName = false;
+        private System.Timers.Timer myTimer = new System.Timers.Timer();
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
         public ObservableCollection<string> ChatHistory { get; } = new ObservableCollection<string>();
 
-        public ObservableCollection<string> UsersList{ get; } = new ObservableCollection<string>();
+        // public ObservableCollection<string> UsersList{ get; } = new ObservableCollection<string>();
+        public ObservableCollection<string> usersList = new ObservableCollection<string>();
+        public ObservableCollection<string> UsersList
+        {
+            get { return usersList; }
+            set
+            {
+                usersList = value;
+                NotifyPropertyChanged("UsersList");
+            }
+        }
+
+        private void NotifyPropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
 
         private readonly object m_chatHistoryLockObject = new object();
 
@@ -40,16 +59,38 @@ namespace ChatClientFramework
             BindingOperations.EnableCollectionSynchronization(ChatHistory, m_chatHistoryLockObject);
             BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);//
 
-            WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
+            myTimer.Elapsed += new ElapsedEventHandler(myEvent);
+            myTimer.Interval = 5000;
+            myTimer.Enabled = false;
 
+            WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
+            ClickCommand = new DelegateCommand(OnClick);
+        }
+        private void myEvent(object source, ElapsedEventArgs e)
+        {
+
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                StartReadingUsersServer();
+            });
+        }
+
+        public ICommand ClickCommand
+        {
+            get;
+            private set;
+        }
+        public void OnClick()
+        {
             StartReadingChatServer();
-            StartReadingUsersServer();//
+            StartReadingUsersServer();
+            myTimer.Enabled = true;
         }
 
         private void StartReadingChatServer()
         {
             var cts = new CancellationTokenSource();
-            _ = m_chatService.ChatLogs()
+            _ = m_chatService.ChatLogs(new Username { Name = Name, })
                 .ForEachAsync((x) => ChatHistory.Add($"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
 
             App.Current.Exit += (_, __) => cts.Cancel();
@@ -58,6 +99,7 @@ namespace ChatClientFramework
         private void StartReadingUsersServer()
         {
             var cts = new CancellationTokenSource();
+            UsersList.Clear();
             _ = m_chatService.Users()
                 .ForEachAsync((x) => UsersList.Add($" {x.Name}"), cts.Token);
 
@@ -72,6 +114,7 @@ namespace ChatClientFramework
                 Content = content,
                 Time = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()),
             });
+
         }
     }
 }

@@ -47,12 +47,21 @@ namespace ChatClientConsole
             await m_client.WriteAsync(chatLog);
         }
 
-        public IAsyncEnumerable<ChatLog> ChatLogs()
+        public IAsyncEnumerable<ChatLog> ChatLogs(Username username)
         {
-            var call = m_client.Subscribe(new Empty());
+            var call = m_client.Subscribe(username);
 
             // I do not want to expose gRPC such as IAsyncStreamReader or AsyncServerStreamingCall.
             // I also do not want to bother user of this class with asking to dispose the call object.
+
+            return call.ResponseStream
+                .ToAsyncEnumerable()
+                .Finally(() => call.Dispose());
+        }
+
+        public IAsyncEnumerable<Username> Users()
+        {
+            var call = m_client.GetUsers(new Empty());
 
             return call.ResponseStream
                 .ToAsyncEnumerable()

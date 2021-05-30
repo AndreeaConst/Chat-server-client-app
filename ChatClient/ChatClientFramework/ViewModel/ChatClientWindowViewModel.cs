@@ -12,27 +12,38 @@ namespace ChatClientFramework
 {
     public class ChatClientWindowViewModel : BindableBase
     {
+        Boolean changedName = false;
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
         public ObservableCollection<string> ChatHistory { get; } = new ObservableCollection<string>();
+
+        public ObservableCollection<string> UsersList{ get; } = new ObservableCollection<string>();
+
         private readonly object m_chatHistoryLockObject = new object();
 
         public string Name
         {
             get { return m_name; }
-            set { SetProperty(ref m_name, value); }
+            set { if (changedName == false)
+                {
+                    SetProperty(ref m_name, value);
+                    changedName = true;
+                }
+                }
         }
-        private string m_name = "anonymous";
+        private string m_name = "Enter your nickname";
 
         public DelegateCommand<string> WriteCommand { get; }
 
         public ChatClientWindowViewModel()
         {
             BindingOperations.EnableCollectionSynchronization(ChatHistory, m_chatHistoryLockObject);
+            BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);//
 
             WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
 
             StartReadingChatServer();
+            StartReadingUsersServer();//
         }
 
         private void StartReadingChatServer()
@@ -40,6 +51,15 @@ namespace ChatClientFramework
             var cts = new CancellationTokenSource();
             _ = m_chatService.ChatLogs()
                 .ForEachAsync((x) => ChatHistory.Add($"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
+
+            App.Current.Exit += (_, __) => cts.Cancel();
+        }
+
+        private void StartReadingUsersServer()
+        {
+            var cts = new CancellationTokenSource();
+            _ = m_chatService.Users()
+                .ForEachAsync((x) => UsersList.Add($" {x.Name}"), cts.Token);
 
             App.Current.Exit += (_, __) => cts.Cancel();
         }

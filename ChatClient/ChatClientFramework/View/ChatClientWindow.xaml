@@ -7,28 +7,32 @@
         mc:Ignorable="d"
         Title="Chat Client"
         Height="450"
-        Width="800">
+        Width="766.4">
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="background2.jpg" AlignmentX="Left" Stretch="Uniform"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition />
-            <RowDefinition Height="18" />
         </Grid.RowDefinitions>
         <ListBox x:Name="History"
-                 Grid.Row="0"
-                 ItemsSource="{Binding ChatHistory}"/>
+             Background="#FF68E7F9"
+            Grid.Row="0"
+                 ItemsSource="{Binding ChatHistory}" Margin="235,0,0,38"/>
 
-        <Grid Grid.Row="1">
+        <Grid Margin="0,382,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition />
+                <ColumnDefinition Width="760" />
             </Grid.ColumnDefinitions>
             <TextBox x:Name="NameInput"
-                     Grid.Column="0"
-                     Text="{Binding Name}" />
+                     Text="{Binding Name}" Margin="236,0,337,0" FontFamily="Segoe Print" FontSize="16" Background="#FF140006" Foreground="#FFFAF6F6" FontWeight="Bold" />
             <TextBox x:Name="BodyInput"
-                     Grid.Column="1"
                      KeyDown="BodyInput_KeyDown"
-                     Loaded="BodyInput_Loaded" />
+                     Loaded="BodyInput_Loaded" Margin="423,0,0,-1" Foreground="#FF140101" FontSize="14" FontFamily="Segoe Print" Background="White" />
         </Grid>
+        <ListBox x:Name="Users"
+            Grid.Row="0"
+           Background="Transparent"
+            ItemsSource="{Binding UsersList}" Margin="0,0,525,38"/>
     </Grid>
 </Window>

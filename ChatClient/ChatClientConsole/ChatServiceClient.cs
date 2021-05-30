@@ -1,13 +1,13 @@
-﻿using ChatClient;
+﻿
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Channels;
+using ChatClientConsole;
 using System.Threading.Tasks;
 
-namespace GrpcWpfSample.Client
+namespace ChatClientConsole
 {
     public class ChatServiceClient
     {

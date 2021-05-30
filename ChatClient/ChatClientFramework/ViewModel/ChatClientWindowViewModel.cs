@@ -2,7 +2,6 @@
 using Prism.Commands;
 using Prism.Mvvm;
 using System;
-using ChatClientFramework;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -40,7 +39,7 @@ namespace ChatClientFramework
         {
             var cts = new CancellationTokenSource();
             _ = m_chatService.ChatLogs()
-                .ForEachAsync((x) => ChatHistory.Add($"{x.At.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
+                .ForEachAsync((x) => ChatHistory.Add($"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
 
             App.Current.Exit += (_, __) => cts.Cancel();
         }

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ChatClientFramework;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GrpcWpfSample.Client.Wpf.View

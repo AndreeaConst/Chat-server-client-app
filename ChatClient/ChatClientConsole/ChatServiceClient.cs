@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using ChatClientConsole;
 using System.Threading.Tasks;
+using System.Threading.Channels;
 
 namespace ChatClientConsole
 {

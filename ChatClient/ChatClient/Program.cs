@@ -4,7 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
-using GrpcWpfSample.Client;
+using ChatClientConsole;
+using ChatClient;
+
 
 namespace ChatClient
 {
@@ -16,8 +18,6 @@ namespace ChatClient
 
             //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-            //using var channel = GrpcChannel.ForAddress("http://localhost:5001");
-            //var client = new Chat.ChatClient(channel);
 
             Console.Write("Enter your name> ");
             var name = Console.ReadLine();

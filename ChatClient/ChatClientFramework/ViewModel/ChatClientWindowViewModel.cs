@@ -10,9 +10,8 @@ using ChatClientConsole;
 using System.Windows.Input;
 using System.Timers;
 using System.Windows;
-using System.ComponentModel;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace ChatClientFramework
 {
@@ -35,7 +34,12 @@ namespace ChatClientFramework
                 NotifyPropertyChanged("UsersList");
             }
         }
-  
+
+        private void NotifyPropertyChanged(string v)
+        {
+            throw new NotImplementedException();
+        }
+
         private readonly object m_chatHistoryLockObject = new object();
 
         public string Name
@@ -47,8 +51,6 @@ namespace ChatClientFramework
                 {
                     SetProperty(ref m_name, value);
                     changedName = true;
-                }             
-                }
                 }
             }
         }
@@ -62,13 +64,11 @@ namespace ChatClientFramework
             BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);//
 
             myTimer.Elapsed += new ElapsedEventHandler(myEvent);
-            myTimer.Interval = 4000;
+            myTimer.Interval = 5000;
             myTimer.Enabled = false;
 
             WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
             ClickCommand = new DelegateCommand(OnClick);
-
-
         }
         private void myEvent(object source, ElapsedEventArgs e)
         {
@@ -121,16 +121,6 @@ namespace ChatClientFramework
 
         }
 
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
         public Dictionary<string, FontStyle> FormatText(string time, string name, string text)
         {
             Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
@@ -164,6 +154,5 @@ namespace ChatClientFramework
             else messages.Add(text2, FontStyles.Normal);
             return messages;
         }
-
     }
-    }
+}

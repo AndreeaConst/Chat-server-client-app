@@ -1,4 +1,4 @@
 obj\Debug\netcoreapp3.1\Protos/Chat.cs \
-obj\Debug\netcoreapp3.1\Protos/ChatGrpc.cs: C:/Users/cata2/.nuget/packages/grpc.tools/2.37.0/build/native/include/google/protobuf/timestamp.proto\
- C:/Users/cata2/.nuget/packages/grpc.tools/2.37.0/build/native/include/google/protobuf/empty.proto\
+obj\Debug\netcoreapp3.1\Protos/ChatGrpc.cs: C:/Users/Alexandru Victor/.nuget/packages/grpc.tools/2.37.0/build/native/include/google/protobuf/timestamp.proto\
+ C:/Users/Alexandru Victor/.nuget/packages/grpc.tools/2.37.0/build/native/include/google/protobuf/empty.proto\
  Protos/chat.proto

@@ -4995,19 +4995,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Cătălina\\.nuget\\packages\\": {}
+    "C:\\Users\\Alexandru Victor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\ChatClientConsole.csproj",
+      "projectUniqueName": "C:\\Users\\Alexandru Victor\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\ChatClientConsole.csproj",
       "projectName": "ChatClientConsole",
-      "projectPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\ChatClientConsole.csproj",
-      "packagesPath": "C:\\Users\\Cătălina\\.nuget\\packages\\",
-      "outputPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\obj\\",
+      "projectPath": "C:\\Users\\Alexandru Victor\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\ChatClientConsole.csproj",
+      "packagesPath": "C:\\Users\\Alexandru Victor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Alexandru Victor\\Desktop\\Chat-server-client-app\\ChatClient\\ChatClientConsole\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Cătălina\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Alexandru Victor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5092,7 +5092,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

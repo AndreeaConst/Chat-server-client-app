@@ -4,9 +4,6 @@ using System.Windows.Input;
 
 namespace GrpcWpfSample.Client.Wpf.View
 {
-    /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
-    /// </summary>
     public partial class ChatClientWindow : Window
     {
         public ChatClientWindow()

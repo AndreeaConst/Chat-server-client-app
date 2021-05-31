@@ -63,7 +63,6 @@ namespace ChatClientFramework
 
         public ChatClientWindowViewModel()
         {
-            Disable = true;
             BindingOperations.EnableCollectionSynchronization(ChatHistory, m_chatHistoryLockObject);
             BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);
 
@@ -115,7 +114,6 @@ namespace ChatClientFramework
                 .ForEachAsync((x) => UsersList.Add($" {x.Name}"), cts.Token);
 
             App.Current.Exit += (_, __) => cts.Cancel();
-            Disable = false;
         }
 
         private async void WriteCommandExecute(string content)
@@ -130,23 +128,10 @@ namespace ChatClientFramework
 
         }
 
-        private bool disable;
-        public bool Disable
-        {
-            get
-            {
-                return disable;
-            }
-            set
-            {
-                disable = value;
-                NotifyPropertyChanged("Disable");
-            }
-        }
-
         public Dictionary<string, FontStyle> FormatText(string time, string name, string text)
         {
             Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
+            Regex bold = new Regex("^.* ?\\*[a-zA-Z]+\\*.*$");
             string text2 = text;
             Dictionary<string, FontStyle> messages = new Dictionary<string, FontStyle>();
             messages.Add(time, FontStyles.Normal);
@@ -154,8 +139,6 @@ namespace ChatClientFramework
             if (regex.IsMatch(text))
             {
                 string[] splitt = text2.Split();
-                System.Text.StringBuilder n = new System.Text.StringBuilder();
-                System.Text.StringBuilder numbers = new System.Text.StringBuilder();
                 foreach (string g in splitt)
                 {
                     if (g.StartsWith("_") && g.EndsWith("_"))

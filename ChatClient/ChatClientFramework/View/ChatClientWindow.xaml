@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Chat Client"
         Height="459.6"
-        Width="766.4">
+        Width="754.4">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="background2.jpg" AlignmentX="Left" Stretch="Uniform"/>
@@ -16,26 +16,28 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ListBox x:Name="History"
-             Background="#FF68E7F9"
+             Background="#FFA65C33"
                  ItemsSource="{Binding ChatHistory}"
-            Grid.Row="0" Margin="240,0,0,47.6"/>
+            Grid.Row="0" Margin="235,0,0,43.6" Foreground="#FFFFD600" FontSize="14" FontFamily="Segoe Print"/>
 
-        <Grid Margin="240,382,0,-0.4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="760" />
-            </Grid.ColumnDefinitions>
-            <TextBox x:Name="NameInput" TextAlignment="Center"
-                     Text="{Binding Name}" Margin="0,-3,582,-2" FontFamily="Segoe Print" FontSize="14" Background="#FF140006" Foreground="#FFEBCED5" FontWeight="Bold" />
-            <TextBox x:Name="BodyInput"
+
+        <TextBox x:Name="NameInput" TextAlignment="Center"
+                     Text="{Binding Name}" Margin="235,377,332,0.6" FontFamily="Segoe Print" FontSize="15" Background="#FFFFD600" Foreground="#FFFAFAFA" FontWeight="Bold" />
+        <TextBox x:Name="BodyInput"
                      KeyDown="BodyInput_KeyDown"
-                     Loaded="BodyInput_Loaded" Margin="178,-3,240,1.6" Foreground="#FF140101" FontFamily="Segoe Print" Background="White" />
-        </Grid>
-        <ListBox x:Name="Users"
-            Grid.Row="0"
+                     Loaded="BodyInput_Loaded" Margin="406,377,0,-0.4" Foreground="#FFA65C33" FontFamily="Segoe Print" Background="White" FontWeight="Bold" />
+
+        <ListView x:Name="Users"
+            Grid.Row="0"  
+                  BorderThickness="0"
            Background="Transparent"
-            ItemsSource="{Binding UsersList}" Margin="0,0,520,47.6" Foreground="#FFFDFAFA" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold">
-        </ListBox>
-        <Button Content="Join" Command="{Binding ClickCommand}" HorizontalAlignment="Left" Margin="0,382,0,-0.4" VerticalAlignment="Top" Width="240" Height="48" Background="#FF6DC9F1" Foreground="#FFF7F4F4" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20">
+            ItemsSource="{Binding UsersList}" Margin="0,38,513,43.6" Foreground="#FFFDFAFA" FontFamily="Segoe Print" FontSize="18" FontWeight="Bold">
+            <ListView.Effect>
+                <DropShadowEffect Color="#FFA65C33"/>
+            </ListView.Effect>
+        </ListView>
+        <Button Content="Join" Command="{Binding ClickCommand}" HorizontalAlignment="Left" Margin="0,377,0,-0.4" VerticalAlignment="Top" Width="235" Height="53" Background="#FFA65C33" Foreground="#FFFFD600" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20">
         </Button>
+        <TextBlock  TextAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Users" VerticalAlignment="Top" Width="225" Height="38" FontFamily="Gill Sans Nova Cond Ultra Bold" FontSize="24" FontWeight="Bold" Foreground="#FFA65C33"/>
     </Grid>
 </Window>

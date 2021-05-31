@@ -10,6 +10,7 @@ using ChatClientConsole;
 using System.Windows.Input;
 using System.Timers;
 using System.Windows;
+using System.ComponentModel;
 
 namespace ChatClientFramework
 {
@@ -32,12 +33,7 @@ namespace ChatClientFramework
                 NotifyPropertyChanged("UsersList");
             }
         }
-
-        private void NotifyPropertyChanged(string v)
-        {
-            throw new NotImplementedException();
-        }
-
+  
         private readonly object m_chatHistoryLockObject = new object();
 
         public string Name
@@ -47,7 +43,7 @@ namespace ChatClientFramework
                 {
                     SetProperty(ref m_name, value);
                     changedName = true;
-                }
+                }             
                 }
         }
         private string m_name = "Enter your nickname";
@@ -60,11 +56,13 @@ namespace ChatClientFramework
             BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);//
 
             myTimer.Elapsed += new ElapsedEventHandler(myEvent);
-            myTimer.Interval = 5000;
+            myTimer.Interval = 4000;
             myTimer.Enabled = false;
 
             WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
             ClickCommand = new DelegateCommand(OnClick);
+
+
         }
         private void myEvent(object source, ElapsedEventArgs e)
         {
@@ -115,6 +113,17 @@ namespace ChatClientFramework
                 Time = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()),
             });
 
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

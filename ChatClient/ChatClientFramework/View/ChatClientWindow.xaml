@@ -36,8 +36,12 @@
                 <DropShadowEffect Color="#FFA65C33"/>
             </ListView.Effect>
         </ListView>
-        <Button Content="Join" Command="{Binding ClickCommand}" HorizontalAlignment="Left" Margin="0,377,0,-0.4" VerticalAlignment="Top" Width="235" Height="53" Background="#FFA65C33" Foreground="#FFFFD600" FontFamily="Segoe Print" FontWeight="Bold" FontSize="20">
-        </Button>
+        <Button Content="Join" Command="{Binding ClickCommand}" HorizontalAlignment="Left" 
+                Margin="0,377,0,-0.4" Name="join"
+                Width="235" Background="#FFA65C33"
+                Foreground="#FFFFD600" FontFamily="Segoe Print"
+                FontWeight="Bold" FontSize="20" Click="Button_Click"
+                />
         <TextBlock  TextAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Users" VerticalAlignment="Top" Width="225" Height="38" FontFamily="Gill Sans Nova Cond Ultra Bold" FontSize="24" FontWeight="Bold" Foreground="#FFA65C33"/>
     </Grid>
 </Window>

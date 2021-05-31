@@ -12,6 +12,7 @@ using System.Timers;
 using System.Windows;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace ChatClientFramework
 {
@@ -35,9 +36,11 @@ namespace ChatClientFramework
             }
         }
 
-        private void NotifyPropertyChanged(string v)
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void NotifyPropertyChanged(string propertyName)
         {
-            throw new NotImplementedException();
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private readonly object m_chatHistoryLockObject = new object();
@@ -60,8 +63,10 @@ namespace ChatClientFramework
 
         public ChatClientWindowViewModel()
         {
+            Disable = true;
             BindingOperations.EnableCollectionSynchronization(ChatHistory, m_chatHistoryLockObject);
-            BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);//
+            BindingOperations.EnableCollectionSynchronization(UsersList, m_chatHistoryLockObject);
+
 
             myTimer.Elapsed += new ElapsedEventHandler(myEvent);
             myTimer.Interval = 5000;
@@ -69,6 +74,7 @@ namespace ChatClientFramework
 
             WriteCommand = new DelegateCommand<string>(WriteCommandExecute);
             ClickCommand = new DelegateCommand(OnClick);
+
         }
         private void myEvent(object source, ElapsedEventArgs e)
         {
@@ -83,6 +89,7 @@ namespace ChatClientFramework
         {
             get;
             private set;
+
         }
         public void OnClick()
         {
@@ -108,6 +115,7 @@ namespace ChatClientFramework
                 .ForEachAsync((x) => UsersList.Add($" {x.Name}"), cts.Token);
 
             App.Current.Exit += (_, __) => cts.Cancel();
+            Disable = false;
         }
 
         private async void WriteCommandExecute(string content)
@@ -119,6 +127,21 @@ namespace ChatClientFramework
                 Time = Timestamp.FromDateTime(DateTime.Now.ToUniversalTime()),
             });
 
+
+        }
+
+        private bool disable;
+        public bool Disable
+        {
+            get
+            {
+                return disable;
+            }
+            set
+            {
+                disable = value;
+                NotifyPropertyChanged("Disable");
+            }
         }
 
         public Dictionary<string, FontStyle> FormatText(string time, string name, string text)

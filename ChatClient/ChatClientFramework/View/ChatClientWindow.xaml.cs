@@ -28,5 +28,10 @@ namespace GrpcWpfSample.Client.Wpf.View
         {
             BodyInput.Focus();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            join.IsEnabled = false;
+        }
     }
 }

@@ -1,0 +1,9 @@
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.deps.json
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.dll
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.pdb
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.AssemblyInfoInputs.cache
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.AssemblyInfo.cs
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.csproj.CoreCompileInputs.cache
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.dll
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.pdb
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.csprojAssemblyReference.cache

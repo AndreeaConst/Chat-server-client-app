@@ -1,0 +1,5 @@
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClient\obj\Debug\net5.0\ChatClient.csprojAssemblyReference.cache
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClient\obj\Debug\net5.0\ChatClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClient\obj\Debug\net5.0\ChatClient.AssemblyInfoInputs.cache
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClient\obj\Debug\net5.0\ChatClient.AssemblyInfo.cs
+C:\univ\cna\Chat-server-client-app\ChatClient\ChatClient\obj\Debug\net5.0\ChatClient.csproj.CoreCompileInputs.cache

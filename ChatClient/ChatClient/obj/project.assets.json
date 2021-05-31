@@ -4742,7 +4742,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\cata2\\.nuget\\packages\\": {}
+    "C:\\Users\\Cătălina\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -4750,11 +4750,11 @@
       "projectUniqueName": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
       "projectName": "ChatClient",
       "projectPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\ChatClient.csproj",
-      "packagesPath": "C:\\Users\\cata2\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Cătălina\\.nuget\\packages\\",
       "outputPath": "C:\\univ\\cna\\Chat-server-client-app\\ChatClient\\ChatClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cata2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Cătălina\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Timers;
 using System.Windows;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace ChatClientFramework
 {
@@ -39,12 +41,16 @@ namespace ChatClientFramework
         public string Name
         {
             get { return m_name; }
-            set { if (changedName == false)
+            set
+            {
+                if (changedName == false)
                 {
                     SetProperty(ref m_name, value);
                     changedName = true;
                 }             
                 }
+                }
+            }
         }
         private string m_name = "Enter your nickname";
 
@@ -125,5 +131,39 @@ namespace ChatClientFramework
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        public Dictionary<string, FontStyle> FormatText(string time, string name, string text)
+        {
+            Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
+            string text2 = text;
+            Dictionary<string, FontStyle> messages = new Dictionary<string, FontStyle>();
+            messages.Add(time, FontStyles.Normal);
+            messages.Add(name, FontStyles.Normal);
+            if (regex.IsMatch(text))
+            {
+                string[] splitt = text2.Split();
+                System.Text.StringBuilder n = new System.Text.StringBuilder();
+                System.Text.StringBuilder numbers = new System.Text.StringBuilder();
+                foreach (string g in splitt)
+                {
+                    if (g.StartsWith("_") && g.EndsWith("_"))
+                    {
+                        string s1 = g.Remove(0, 1);
+                        string s2 = s1.Remove(s1.Length - 1);
+                        FontStyle f = FontStyles.Italic;
+                        messages.Add(s2, f);
+                    }
+                    else
+                    {
+                        messages.Add(g, FontStyles.Normal);
+                        messages.Add(" ", FontStyles.Normal);
+                    }
+
+                }
+                return messages;
+            }
+            else messages.Add(text2, FontStyles.Normal);
+            return messages;
+        }
+
     }
-}
+    }

@@ -139,11 +139,12 @@ namespace ChatClientFramework
             Regex italic = new Regex("^.* ?_[a-zA-Z]+_.*$");
             Regex bold = new Regex("^.* \\*[a-zA-Z]+\\* .*$");
             Regex underline = new Regex("^.* `[a-zA-Z]+` .*$");
+            Regex strikeout = new Regex("^.* [a-zA-Z]+ .*$");
 
             ObservableCollection<Tuple<string, FontStyle>> messages = new ObservableCollection<Tuple<string, FontStyle>>();
             //$"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"
             messages.Add(new Tuple<string, FontStyle>(time + " " + name + ": ", FontStyle.Regular));
-            if (italic.IsMatch(text) || bold.IsMatch(text) || underline.IsMatch(text))
+            if (italic.IsMatch(text) || bold.IsMatch(text) || underline.IsMatch(text) || strikeout.IsMatch(text))
             {
                 string[] splitt = text2.Split();
                 foreach (string g in splitt)
@@ -165,6 +166,12 @@ namespace ChatClientFramework
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
                         messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Underline));
+                    }
+                    else if (g.StartsWith("") && g.EndsWith(""))
+                    {
+                        string s1 = g.Remove(0, 1);
+                        string s2 = s1.Remove(s1.Length - 1);
+                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Strikeout));
                     }
                     else
                     {

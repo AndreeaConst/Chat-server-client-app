@@ -16,3 +16,11 @@ C:\Users\Alexandru Victor\Desktop\Chat-server-client-app\ChatClient\ChatClientCo
 C:\Users\Alexandru Victor\Desktop\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.csproj.CoreCompileInputs.cache
 C:\Users\Alexandru Victor\Desktop\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.dll
 C:\Users\Alexandru Victor\Desktop\Chat-server-client-app\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.pdb
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.deps.json
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.dll
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\bin\Debug\netstandard2.0\ChatClientConsole.pdb
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.csprojAssemblyReference.cache
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.AssemblyInfoInputs.cache
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.AssemblyInfo.cs
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.dll
+D:\facultate\an2\sem2\CNA\final\ChatClient\ChatClientConsole\obj\Debug\netstandard2.0\ChatClientConsole.pdb

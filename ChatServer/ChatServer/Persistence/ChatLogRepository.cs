@@ -11,7 +11,7 @@ namespace ChatServer.Server.Persistence
     [Export(typeof(IChatLogRepository))]
     public class ChatLogRepository : IChatLogRepository
     {
-        private readonly List<ChatLog> m_storage = new List<ChatLog>(); // dummy on memory storage
+        private readonly List<ChatLog> m_storage = new List<ChatLog>(); 
 
         public void Add(ChatLog chatLog)
         {

@@ -26,7 +26,6 @@ namespace ChatServer.Server.Services
                 new Status(StatusCode.OK, $"Authenticated peer: {context.Peer}") :
                 new Status(StatusCode.Unauthenticated, $"Unauthenticated peer: {context.Peer}");
 
-            // reject unauthenticated peer
             if (context.Status.StatusCode == StatusCode.Unauthenticated)
             {
                 m_logger.Info(context.Status);
@@ -36,9 +35,6 @@ namespace ChatServer.Server.Services
 
         private bool TryTakeIpAddress(string peer, out string ipAddress)
         {
-            // ex.
-            // "ipv4:127.0.0.1:12345"
-            // "ipv6:[::1]:12345"
 
             var ipv4Match = Regex.Match(peer, @"^ipv4:(.+):");
             if (ipv4Match.Success)

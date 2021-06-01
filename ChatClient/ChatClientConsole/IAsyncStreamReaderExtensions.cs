@@ -8,13 +8,6 @@ namespace ChatClientConsole
 {
     public static class IAsyncStreamReaderExtensions
     {
-        /// <summary>
-        /// Convert IAsyncStreamReader to IAsyncEnumerable.
-        /// </summary>
-        /// <remarks>https://github.com/grpc/grpc/issues/6776</remarks>
-        /// <typeparam name="T">sequence type</typeparam>
-        /// <param name="asyncStreamReader">source IAsyncStreamReader</param>
-        /// <returns>converted IAsyncEnumerable</returns>
         public static IAsyncEnumerable<T> ToAsyncEnumerable<T>(this IAsyncStreamReader<T> asyncStreamReader)
         {
             if (asyncStreamReader is null) { throw new ArgumentNullException(nameof(asyncStreamReader)); }

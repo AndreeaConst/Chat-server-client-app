@@ -28,9 +28,6 @@ namespace ChatClientConsole
                 var keyPair = new KeyCertificatePair(clientCert, clientKey);
                 var credentials = new SslCredentials(serverCACert, keyPair);
 
-                // Client authentication is an option. You can remove it as follows if you only need SSL.
-                //var credentials = new SslCredentials(serverCACert);
-
                 m_client = new Chat.ChatClient(
                     new Grpc.Core.Channel("localhost", 50052, credentials));
             }
@@ -49,23 +46,19 @@ namespace ChatClientConsole
 
         public IAsyncEnumerable<ChatLog> ChatLogs(Username username)
         {
-            var call = m_client.Subscribe(username);
-
-            // I do not want to expose gRPC such as IAsyncStreamReader or AsyncServerStreamingCall.
-            // I also do not want to bother user of this class with asking to dispose the call object.
-
-            return call.ResponseStream
+            var callUserName = m_client.Subscribe(username);
+            return callUserName.ResponseStream
                 .ToAsyncEnumerable()
-                .Finally(() => call.Dispose());
+                .Finally(() => callUserName.Dispose());
         }
 
         public IAsyncEnumerable<Username> Users()
         {
-            var call = m_client.GetUsers(new Empty());
+            var callUsers = m_client.GetUsers(new Empty());
 
-            return call.ResponseStream
+            return callUsers.ResponseStream
                 .ToAsyncEnumerable()
-                .Finally(() => call.Dispose());
+                .Finally(() => callUsers.Dispose());
         }
     }
 }

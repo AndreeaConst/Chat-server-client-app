@@ -42,6 +42,9 @@
                 Foreground="#FFFFD600" FontFamily="Segoe Print"
                 FontWeight="Bold" FontSize="20" Click="Button_Click"
                 />
-        <TextBlock  TextAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Users" VerticalAlignment="Top" Width="225" Height="38" FontFamily="Gill Sans Nova Cond Ultra Bold" FontSize="24" FontWeight="Bold" Foreground="#FFA65C33"/>
+        <TextBlock  TextAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Users" 
+                    VerticalAlignment="Top" Width="225" Height="38"
+                    FontFamily="Gill Sans Nova Cond Ultra Bold" FontSize="24" FontWeight="Bold" 
+                    Foreground="#FFA65C33"/>
     </Grid>
 </Window>

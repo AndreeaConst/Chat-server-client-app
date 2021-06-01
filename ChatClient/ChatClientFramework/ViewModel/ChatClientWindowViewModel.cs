@@ -13,8 +13,6 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
-using System.Drawing;
-using FontStyle = System.Drawing.FontStyle;
 
 namespace ChatClientFramework
 {
@@ -24,9 +22,8 @@ namespace ChatClientFramework
         private System.Timers.Timer myTimer = new System.Timers.Timer();
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
-        public ObservableCollection<Tuple<string, FontStyle>> ChatHistory { get; } = new ObservableCollection<Tuple<string, FontStyle>>();
+        public ObservableCollection<Tuple<string, FontStyle, string, string>> ChatHistory { get; } = new ObservableCollection<Tuple<string, FontStyle, string, string>>();
 
-        // public ObservableCollection<string> UsersList{ get; } = new ObservableCollection<string>();
         public ObservableCollection<string> usersList = new ObservableCollection<string>();
         public ObservableCollection<string> UsersList
         {
@@ -105,7 +102,7 @@ namespace ChatClientFramework
             _ = m_chatService.ChatLogs(new Username { Name = Name, })
                 .ForEachAsync((x) => {
                     foreach (var newChat in FormatText(x.Time.ToDateTime().ToString("HH:mm:ss"), x.Name, x.Content))
-                    ChatHistory.Add(new Tuple<string, FontStyle>(newChat.Item1, newChat.Item2));
+                    ChatHistory.Add(new Tuple<string, FontStyle, string, string>(newChat.Item1, newChat.Item2, newChat.Item3, newChat.Item4));
                 }, cts.Token) ;
 
             App.Current.Exit += (_, __) => cts.Cancel();
@@ -133,17 +130,16 @@ namespace ChatClientFramework
 
         }
 
-        public ObservableCollection<Tuple<string, FontStyle>> FormatText(string time, string name, string text)
+        public ObservableCollection<Tuple<string, FontStyle, string, string>> FormatText(string time, string name, string text)
         {
             string text2 = text;
             Regex italic = new Regex("^.* ?_[a-zA-Z]+_.*$");
             Regex bold = new Regex("^.* \\*[a-zA-Z]+\\* .*$");
             Regex underline = new Regex("^.* `[a-zA-Z]+` .*$");
-            Regex strikeout = new Regex("^.* [a-zA-Z]+ .*$");
+            Regex strikeout = new Regex("^.* ~[a-zA-Z]+~ .*$");
 
-            ObservableCollection<Tuple<string, FontStyle>> messages = new ObservableCollection<Tuple<string, FontStyle>>();
-            //$"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"
-            messages.Add(new Tuple<string, FontStyle>(time + " " + name + ": ", FontStyle.Regular));
+            ObservableCollection<Tuple<string, FontStyle, string, string>> messages = new ObservableCollection<Tuple<string, FontStyle, string, string>>();
+            messages.Add(new Tuple<string, FontStyle, string, string>(time + " " + name + ": ", FontStyles.Normal, "", ""));
             if (italic.IsMatch(text) || bold.IsMatch(text) || underline.IsMatch(text) || strikeout.IsMatch(text))
             {
                 string[] splitt = text2.Split();
@@ -153,36 +149,36 @@ namespace ChatClientFramework
                     {
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
-                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Italic));
+                        messages.Add(new Tuple<string, FontStyle, string, string>(s2, FontStyles.Italic, "", ""));
                     }
                     else if (g.StartsWith("*") && g.EndsWith("*"))
                     {
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
-                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Bold));
+                        messages.Add(new Tuple<string, FontStyle, string, string>(s2,FontStyles.Normal, "", "Bold"));
                     }
                     else if (g.StartsWith("`") && g.EndsWith("`"))
                     {
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
-                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Underline));
+                        messages.Add(new Tuple<string, FontStyle, string, string>(s2, FontStyles.Normal, "Underline", ""));
                     }
-                    else if (g.StartsWith("") && g.EndsWith(""))
+                    else if (g.StartsWith("~") && g.EndsWith("~"))
                     {
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
-                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Strikeout));
+                        messages.Add(new Tuple<string, FontStyle, string, string>(s2, FontStyles.Normal, "Strikethrough", ""));
                     }
                     else
                     {
-                        messages.Add(new Tuple<string, FontStyle>(g, FontStyle.Regular));
-                        messages.Add(new Tuple<string, FontStyle>(" ", FontStyle.Regular));
+                        messages.Add(new Tuple<string, FontStyle, string, string>(g, FontStyles.Normal, "", ""));
+
                     }
            
                 }
                 return messages;
             }
-            else messages.Add(new Tuple<string, FontStyle>(text2, FontStyle.Regular));
+            else messages.Add(new Tuple<string, FontStyle,string,string>(text2, FontStyles.Normal, "", ""));
             return messages;
         }
     }

@@ -14,10 +14,6 @@ namespace ChatClient
     {
         static void Main(string[] args)
         {
-            // The port number(5001) must match the port of the gRPC server.
-
-            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-
 
             Console.Write("Enter your name> ");
             var name = Console.ReadLine();
@@ -31,26 +27,21 @@ namespace ChatClient
             var chatServiceClient = new ChatServiceClient();
             var consoleLock = new object();
 
-            // subscribe (asynchronous)
             _ = chatServiceClient.ChatLogs(new Username
             {
                 Name = name,
             })
                 .ForEachAsync((x) =>
                 {
-                    // if the user is writing something, wait until it finishes.
                     lock (consoleLock)
                     {
                         Console.WriteLine($"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}");
                     }
                 });
-
-            // write
             while (true)
             {
                 var key = Console.ReadKey();
 
-                // A key input starts writing mode
                 lock (consoleLock)
                 {
                     var content = key.KeyChar + Console.ReadLine();

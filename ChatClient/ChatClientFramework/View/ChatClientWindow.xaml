@@ -21,7 +21,8 @@
             <ListBox.ItemTemplate>
             <DataTemplate>
                     <Grid>
-                        <TextBlock Margin="2" Text="{Binding Path=Item1}" FontStyle ="{Binding Path=Item2}" Grid.Column="0"/>
+                        <TextBlock Margin="2" Text="{Binding Path=Item1}" FontStyle ="{Binding Path=Item2}" 
+                                   TextDecorations="{Binding Path=Item3}" FontWeight="{Binding Path=Item4}" Grid.Column="0"/>
                     </Grid>
             </DataTemplate>
             </ListBox.ItemTemplate>

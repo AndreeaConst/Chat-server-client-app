@@ -16,12 +16,10 @@ namespace ChatClientConsole
 
         public ChatServiceClient()
         {
-            // Locate required files and set true to enable SSL
             var secure = false;
 
             if (secure)
             {
-                // create secure channel
                 var serverCACert = File.ReadAllText(@"C:\localhost_server.crt");
                 var clientCert = File.ReadAllText(@"C:\localhost_client.crt");
                 var clientKey = File.ReadAllText(@"C:\localhost_clientkey.pem");
@@ -33,7 +31,6 @@ namespace ChatClientConsole
             }
             else
             {
-                // create insecure channel
                 m_client = new Chat.ChatClient(
                     new Grpc.Core.Channel("localhost", 50052, ChannelCredentials.Insecure));
             }

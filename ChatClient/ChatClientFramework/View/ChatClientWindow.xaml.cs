@@ -29,6 +29,7 @@ namespace GrpcWpfSample.Client.Wpf.View
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             join.IsEnabled = false;
+            NameInput.IsReadOnly = true;
         }
     }
 }

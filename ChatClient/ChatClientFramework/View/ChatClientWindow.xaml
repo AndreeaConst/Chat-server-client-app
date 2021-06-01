@@ -16,9 +16,17 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <ListBox x:Name="History"
-             Background="#FFA65C33"
-                 ItemsSource="{Binding ChatHistory}"
-            Grid.Row="0" Margin="235,0,0,43.6" Foreground="#FFFFD600" FontSize="14" FontFamily="Segoe Print"/>
+             Background="#FFA65C33"  Grid.Row="0" Margin="235,0,0,43.6" Foreground="#FFFFD600" FontSize="14" FontFamily="Segoe Print"
+                 ItemsSource="{Binding ChatHistory}">
+            <ListBox.ItemTemplate>
+            <DataTemplate>
+                    <Grid>
+                        <TextBlock Margin="2" Text="{Binding Path=Item1}" FontStyle ="{Binding Path=Item2}" Grid.Column="0"/>
+                    </Grid>
+            </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
 
 
         <TextBox x:Name="NameInput" TextAlignment="Center"

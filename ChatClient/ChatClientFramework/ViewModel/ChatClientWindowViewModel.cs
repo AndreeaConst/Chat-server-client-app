@@ -22,7 +22,7 @@ namespace ChatClientFramework
         private System.Timers.Timer myTimer = new System.Timers.Timer();
         private readonly ChatServiceClient m_chatService = new ChatServiceClient();
 
-        public ObservableCollection<string> ChatHistory { get; } = new ObservableCollection<string>();
+        public ObservableCollection<Tuple<string, FontStyle>> ChatHistory { get; } = new ObservableCollection<Tuple<string, FontStyle>>();
 
         // public ObservableCollection<string> UsersList{ get; } = new ObservableCollection<string>();
         public ObservableCollection<string> usersList = new ObservableCollection<string>();
@@ -101,7 +101,10 @@ namespace ChatClientFramework
         {
             var cts = new CancellationTokenSource();
             _ = m_chatService.ChatLogs(new Username { Name = Name, })
-                .ForEachAsync((x) => ChatHistory.Add($"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"), cts.Token);
+                .ForEachAsync((x) => {
+                    foreach (var newChat in FormatText(x.Time.ToDateTime().ToString("HH:mm:ss"), x.Name, x.Content))
+                    ChatHistory.Add(new Tuple<string, FontStyle>(newChat.Item1, newChat.Item2));
+                }, cts.Token) ;
 
             App.Current.Exit += (_, __) => cts.Cancel();
         }
@@ -128,14 +131,14 @@ namespace ChatClientFramework
 
         }
 
-        public Dictionary<string, FontStyle> FormatText(string time, string name, string text)
+        public ObservableCollection<Tuple<string, FontStyle>> FormatText(string time, string nume, string text)
         {
             Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
             Regex bold = new Regex("^.* ?\\*[a-zA-Z]+\\*.*$");
             string text2 = text;
-            Dictionary<string, FontStyle> messages = new Dictionary<string, FontStyle>();
-            messages.Add(time, FontStyles.Normal);
-            messages.Add(name, FontStyles.Normal);
+            ObservableCollection<Tuple<string, FontStyle>> messages= new ObservableCollection<Tuple<string, FontStyle>>();
+            //$"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"
+            messages.Add(new Tuple<string, FontStyle>(time+" "+nume+": ", FontStyles.Normal));
             if (regex.IsMatch(text))
             {
                 string[] splitt = text2.Split();
@@ -146,18 +149,18 @@ namespace ChatClientFramework
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
                         FontStyle f = FontStyles.Italic;
-                        messages.Add(s2, f);
+                        messages.Add(new Tuple<string, FontStyle> (s2, f));
                     }
                     else
                     {
-                        messages.Add(g, FontStyles.Normal);
-                        messages.Add(" ", FontStyles.Normal);
+                        messages.Add(new Tuple<string, FontStyle>(g, FontStyles.Normal));
+                        messages.Add(new Tuple<string, FontStyle>(" ", FontStyles.Normal));
                     }
 
                 }
                 return messages;
             }
-            else messages.Add(text2, FontStyles.Normal);
+            else messages.Add(new Tuple<string, FontStyle>(text2, FontStyles.Normal));
             return messages;
         }
     }

@@ -13,6 +13,8 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using System.Drawing;
+using FontStyle = System.Drawing.FontStyle;
 
 namespace ChatClientFramework
 {
@@ -131,15 +133,16 @@ namespace ChatClientFramework
 
         }
 
-        public ObservableCollection<Tuple<string, FontStyle>> FormatText(string time, string nume, string text)
+        public ObservableCollection<Tuple<string, FontStyle>> FormatText(string time, string name, string text)
         {
-            Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
-            Regex bold = new Regex("^.* ?\\*[a-zA-Z]+\\*.*$");
             string text2 = text;
-            ObservableCollection<Tuple<string, FontStyle>> messages= new ObservableCollection<Tuple<string, FontStyle>>();
+            Regex regex = new Regex("^.* ?_[a-zA-Z]+_.*$");
+            Regex bold = new Regex("^.* \\*[a-zA-Z]+\\* .*$");
+
+            ObservableCollection<Tuple<string, FontStyle>> messages = new ObservableCollection<Tuple<string, FontStyle>>();
             //$"{x.Time.ToDateTime().ToString("HH:mm:ss")} {x.Name}: {x.Content}"
-            messages.Add(new Tuple<string, FontStyle>(time+" "+nume+": ", FontStyles.Normal));
-            if (regex.IsMatch(text))
+            messages.Add(new Tuple<string, FontStyle>(time + " " + name + ": ", FontStyle.Regular));
+            if (regex.IsMatch(text) || bold.IsMatch(text))
             {
                 string[] splitt = text2.Split();
                 foreach (string g in splitt)
@@ -148,19 +151,24 @@ namespace ChatClientFramework
                     {
                         string s1 = g.Remove(0, 1);
                         string s2 = s1.Remove(s1.Length - 1);
-                        FontStyle f = FontStyles.Italic;
-                        messages.Add(new Tuple<string, FontStyle> (s2, f));
+                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Italic));
+                    }
+                    else if (g.StartsWith("*") && g.EndsWith("*"))
+                    {
+                        string s1 = g.Remove(0, 1);
+                        string s2 = s1.Remove(s1.Length - 1);
+                        messages.Add(new Tuple<string, FontStyle>(s2, FontStyle.Bold));
                     }
                     else
                     {
-                        messages.Add(new Tuple<string, FontStyle>(g, FontStyles.Normal));
-                        messages.Add(new Tuple<string, FontStyle>(" ", FontStyles.Normal));
+                        messages.Add(new Tuple<string, FontStyle>(g, FontStyle.Regular));
+                        messages.Add(new Tuple<string, FontStyle>(" ", FontStyle.Regular));
                     }
-
+           
                 }
                 return messages;
             }
-            else messages.Add(new Tuple<string, FontStyle>(text2, FontStyles.Normal));
+            else messages.Add(new Tuple<string, FontStyle>(text2, FontStyle.Regular));
             return messages;
         }
     }
